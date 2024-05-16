@@ -30,6 +30,7 @@ const CardGameRulesPage = () => {
           required
         ></textarea>
         <button type="button" onClick={handleSaveToFile}>Save Rules to File</button>
+        <Link to="/index.js">Back to Home</Link>
       </form>
     </Layout>
   )

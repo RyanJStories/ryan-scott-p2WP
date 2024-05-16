@@ -92,6 +92,7 @@ const CardFormPage = () => {
           required
         ></textarea>
         <button type="submit">Submit</button>
+        <Link to="/index.js">Back to Home</Link>
       </form>
     </Layout>
   )

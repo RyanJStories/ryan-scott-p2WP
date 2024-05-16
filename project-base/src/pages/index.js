@@ -16,8 +16,19 @@ const HomePage = ({ data }) => {
             <p>{card.cardDescription?.childMarkdownRemark?.html}</p>
             <Link to={`/cards/${card.slug}`}>View Details</Link>
           </div>
+          
         ))}
       </div>
+      <div>
+      <h1>Home Navigation:</h1>
+        <nav>
+          <ul>
+            <li><Link to="/card-form">Card Form</Link></li>
+            <li><Link to="/card-game-rules">Card Game Rules</Link></li>
+          </ul>
+        </nav>
+      <main>{children}</main>
+    </div>
     </Layout>
   )
 }
