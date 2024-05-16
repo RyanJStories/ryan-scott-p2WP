@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import Layout from "../components/layout"
 import { navigate } from "gatsby"
+import { Link } from "gatsby"
 
 const CardFormPage = () => {
   const [formData, setFormData] = useState({
@@ -92,7 +93,7 @@ const CardFormPage = () => {
           required
         ></textarea>
         <button type="submit">Submit</button>
-        <Link to="/index.js">Back to Home</Link>
+        <Link to="/">Back to Home</Link>
       </form>
     </Layout>
   )
