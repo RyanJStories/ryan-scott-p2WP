@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import Layout from "../components/layout"
 import { navigate } from "gatsby"
 import { Link } from "gatsby"
+import darkTheme from "../themes/darkTheme";
+import { ThemeProvider } from "styled-components";
 
 const CardFormPage = () => {
   const [formData, setFormData] = useState({
@@ -58,6 +60,7 @@ const CardFormPage = () => {
   }
 
   return (
+    <ThemeProvider>
     <Layout>
       <h1>Create a New Card</h1>
       <form onSubmit={handleSubmit}>
@@ -96,6 +99,7 @@ const CardFormPage = () => {
         <Link to="/">Back to Home</Link>
       </form>
     </Layout>
+    </ThemeProvider>
   )
 }
 

@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import Layout from "../components/layout"
 import { Link } from "gatsby"
+import darkTheme from "../themes/darkTheme";
+import { ThemeProvider } from "styled-components";
 
 const CardGameRulesPage = () => {
   const [rules, setRules] = useState("")
@@ -19,6 +21,7 @@ const CardGameRulesPage = () => {
   }
 
   return (
+    <ThemeProvider>
     <Layout>
       <h1>Card Game Rules</h1>
       <form>
@@ -34,6 +37,7 @@ const CardGameRulesPage = () => {
         <Link to="/index.js">Back to Home</Link>
       </form>
     </Layout>
+    </ThemeProvider>
   )
 }
 

@@ -1,11 +1,14 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
+import lightTheme from "../themes/lightTheme";
+import { ThemeProvider } from "styled-components";
 
 const HomePage = ({ data }) => {
   const cards = data?.allContentfulCard?.nodes || []
 
   return (
+    <ThemeProvider>
     <Layout>
       <h1>Choose a Card:</h1>
       <div>
@@ -30,6 +33,7 @@ const HomePage = ({ data }) => {
       <main>{children}</main>
     </div>
     </Layout>
+    </ThemeProvider>
   )
 }
 
