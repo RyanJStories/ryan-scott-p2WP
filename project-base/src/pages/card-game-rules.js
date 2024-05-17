@@ -27,16 +27,23 @@ const CardGameRulesPage = () => {
       <Layout>
         <Box p={3}>
           <Heading as="h1">Card Game Rules</Heading>
+
+
           <Box as="form" mt={3}>
             <Text as="label" htmlFor="rulesInput" display="block" mb={2}>
               Input Rules:
             </Text>
             <Textarea
+
               id="rulesInput"
+
               value={rules}
+              
               onChange={handleChange}
+
               placeholder="Enter the rules of the card game..."
               required
+
               rows={6}
               sx={{ width: '100%', mb: 3 }}
             />
@@ -47,6 +54,7 @@ const CardGameRulesPage = () => {
               <Button>Back to Home</Button>
             </RebassLink>
           </Box>
+
         </Box>
       </Layout>
     </ThemeProvider>

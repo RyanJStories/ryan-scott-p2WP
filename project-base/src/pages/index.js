@@ -35,6 +35,7 @@ const HomePage = ({ data }) => {
           </Flex>
         </Box>
       </Layout>
+      
     </ThemeProvider>
   )
 }
