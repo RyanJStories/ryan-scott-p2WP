@@ -66,6 +66,7 @@ const CardFormPage = () => {
         <Box p={3}>
           <Heading as="h1">Create a New Card</Heading>
           <Box as="form" onSubmit={handleSubmit} mt={3}>
+           
             <Label htmlFor="nameOfCard">Name of Card</Label>
             <Input
               type="text"
@@ -106,13 +107,18 @@ const CardFormPage = () => {
               rows={6}
               mb={3}
             />
-            <Card
-              nameOfCard={formData.nameOfCard}
-              imageForCard={formData.imageForCard}
-              stats={formData.stats}
-              cardDescription={formData.cardDescription}
-            />
-            <Button type="submit" mr={2}>Submit</Button>
+            <Box mb={3}>
+              <Heading as="h2" mb={2}>Card Preview:</Heading>
+              <Card
+                nameOfCard={formData.nameOfCard}
+                imageForCard={formData.imageForCard}
+                stats={formData.stats}
+                cardDescription={formData.cardDescription}
+              />
+            </Box>
+
+  
+            <Button type="submit" mr={2}>Submit</Button>       
             <Button as={Link} to="/" variant="secondary">Back to Home</Button>
           </Box>
         </Box>
