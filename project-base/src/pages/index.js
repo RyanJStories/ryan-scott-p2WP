@@ -1,38 +1,40 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import lightTheme from "../themes/lightTheme";
-import { ThemeProvider } from "styled-components";
+import lightTheme from "../themes/lightTheme"
+import { ThemeProvider } from "styled-components"
+import Card from "../components/card"
+import { Box, Heading, NavLink, Flex } from "rebass"
 
 const HomePage = ({ data }) => {
   const cards = data?.allContentfulCard?.nodes || []
 
   return (
-    <ThemeProvider>
-    <Layout>
-      <h1>Choose a Card:</h1>
-      <div>
-        {cards.map(card => (
-          <div key={card.id}>
-            <h2>{card.nameOfCard}</h2>
-            <img src={card.imageForCard?.file?.url} alt={card.nameOfCard} />
-            <p>{card.cardDescription?.childMarkdownRemark?.html}</p>
-            <Link to={`/cards/${card.slug}`}>View Details</Link>
-          </div>
-          
-        ))}
-      </div>
-      <div>
-      <h1>Home Navigation:</h1>
-        <nav>
-          <ul>
-            <li><Link to="/card-form">Card Form</Link></li>
-            <li><Link to="/card-game-rules">Card Game Rules</Link></li>
-          </ul>
-        </nav>
-      <main>{children}</main>
-    </div>
-    </Layout>
+    <ThemeProvider theme={lightTheme}>
+      <Layout>
+        <Box p={3}>
+          <Heading as="h1">Choose a Card:</Heading>
+          <Flex flexWrap="wrap" justifyContent="space-around" my={3}>
+            {cards.map(card => (
+              <Card
+                key={card.id}
+                nameOfCard={card.nameOfCard}
+                imageForCard={card.imageForCard?.file?.url}
+                cardDescription={card.cardDescription?.childMarkdownRemark?.html}
+              />
+            ))}
+          </Flex>
+          <Heading as="h1" mt={4}>Home Navigation:</Heading>
+          <Flex as="nav" flexDirection="column" mt={3}>
+            <NavLink as={Link} to="/card-form" mb={2}>
+              Card Form
+            </NavLink>
+            <NavLink as={Link} to="/card-game-rules">
+              Card Game Rules
+            </NavLink>
+          </Flex>
+        </Box>
+      </Layout>
     </ThemeProvider>
   )
 }

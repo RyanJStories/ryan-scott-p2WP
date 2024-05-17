@@ -1,9 +1,10 @@
 import React, { useState } from "react"
 import Layout from "../components/layout"
-import { navigate } from "gatsby"
-import { Link } from "gatsby"
-import darkTheme from "../themes/darkTheme";
-import { ThemeProvider } from "styled-components";
+import { navigate, Link } from "gatsby"
+import darkTheme from "../themes/darkTheme"
+import { ThemeProvider } from "styled-components"
+import Card from "../components/card"
+import { Box, Button, Input, Label, Textarea, Heading } from "rebass"
 
 const CardFormPage = () => {
   const [formData, setFormData] = useState({
@@ -60,45 +61,62 @@ const CardFormPage = () => {
   }
 
   return (
-    <ThemeProvider>
-    <Layout>
-      <h1>Create a New Card</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="nameOfCard"
-          value={formData.nameOfCard}
-          onChange={handleInputChange}
-          placeholder="Name of Card"
-          required
-        />
-        <input
-          type="text"
-          name="imageForCard"
-          value={formData.imageForCard}
-          onChange={handleInputChange}
-          placeholder="Image URL for Card"
-          required
-        />
-        <input
-          type="text"
-          name="stats"
-          value={formData.stats}
-          onChange={handleInputChange}
-          placeholder="Stats"
-          required
-        />
-        <textarea
-          name="cardDescription"
-          value={formData.cardDescription}
-          onChange={handleInputChange}
-          placeholder="Card Description"
-          required
-        ></textarea>
-        <button type="submit">Submit</button>
-        <Link to="/">Back to Home</Link>
-      </form>
-    </Layout>
+    <ThemeProvider theme={darkTheme}>
+      <Layout>
+        <Box p={3}>
+          <Heading as="h1">Create a New Card</Heading>
+          <Box as="form" onSubmit={handleSubmit} mt={3}>
+            <Label htmlFor="nameOfCard">Name of Card</Label>
+            <Input
+              type="text"
+              name="nameOfCard"
+              value={formData.nameOfCard}
+              onChange={handleInputChange}
+              placeholder="Name of Card"
+              required
+              mb={3}
+            />
+            <Label htmlFor="imageForCard">Image URL for Card</Label>
+            <Input
+              type="text"
+              name="imageForCard"
+              value={formData.imageForCard}
+              onChange={handleInputChange}
+              placeholder="Image URL for Card"
+              required
+              mb={3}
+            />
+            <Label htmlFor="stats">Stats</Label>
+            <Input
+              type="text"
+              name="stats"
+              value={formData.stats}
+              onChange={handleInputChange}
+              placeholder="Stats"
+              required
+              mb={3}
+            />
+            <Label htmlFor="cardDescription">Card Description</Label>
+            <Textarea
+              name="cardDescription"
+              value={formData.cardDescription}
+              onChange={handleInputChange}
+              placeholder="Card Description"
+              required
+              rows={6}
+              mb={3}
+            />
+            <Card
+              nameOfCard={formData.nameOfCard}
+              imageForCard={formData.imageForCard}
+              stats={formData.stats}
+              cardDescription={formData.cardDescription}
+            />
+            <Button type="submit" mr={2}>Submit</Button>
+            <Button as={Link} to="/" variant="secondary">Back to Home</Button>
+          </Box>
+        </Box>
+      </Layout>
     </ThemeProvider>
   )
 }
