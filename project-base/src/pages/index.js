@@ -2,42 +2,52 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import lightTheme from "../themes/lightTheme"
+import CardList from "../components/CardList"
+import PlayMat from "../components/PlayMat"
 import { ThemeProvider } from "styled-components"
 import Card from "../components/card"
 import { Box, Heading, NavLink, Flex } from "rebass"
+import {DragDropContext} from 'react-beautiful-dnd'
 
 const HomePage = ({ data }) => {
   const cards = data?.allContentfulCard?.nodes || []
 
-  return (
-    <ThemeProvider theme={lightTheme}>
-      <Layout>
-        <Box p={3}>
-          <Heading as="h1">Choose a Card:</Heading>
-          <Flex flexWrap="wrap" justifyContent="space-around" my={3}>
-            {cards.map(card => (
-              <Card
-                key={card.id}
-                nameOfCard={card.nameOfCard}
-                imageForCard={card.imageForCard?.file?.url}
-                cardDescription={card.cardDescription?.childMarkdownRemark?.html}
-              />
-            ))}
-          </Flex>
-          <Heading as="h1" mt={4}>Home Navigation:</Heading>
-          <Flex as="nav" flexDirection="column" mt={3}>
+
+return (
+  <ThemeProvider theme={lightTheme}>
+    <Layout>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Flex>
+          {/* Nav */}
+          <Box className="Navigation" width={2 / 6} p="2em">
+            <Heading as="h1" mb={3}>
+              Home Navigation:
+            </Heading>
             <NavLink as={Link} to="/card-form" mb={2}>
               Card Form
             </NavLink>
             <NavLink as={Link} to="/card-game-rules">
               Card Game Rules
             </NavLink>
-          </Flex>
-        </Box>
-      </Layout>
-      
-    </ThemeProvider>
-  )
+
+            <Heading as="h2" mt={4}>
+              Cards List:
+            </Heading>
+            <CardList cards={cards} />
+          </Box>
+
+          {/* Pm */}
+          <Box className="PlayMat" width={1 / 2}>
+            <PlayMat />
+          </Box>
+        </Flex>
+
+
+
+      </DragDropContext>
+    </Layout>
+  </ThemeProvider>
+)
 }
 
 export const query = graphql`
@@ -63,3 +73,18 @@ export const query = graphql`
 `
 
 export default HomePage
+
+
+const styles = `
+  .Navigation {
+    background-color: ${({ theme }) => theme.colors.muted};
+    padding: 2em;
+  }
+
+  .PlayMat {
+    background-color: brown;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }`
