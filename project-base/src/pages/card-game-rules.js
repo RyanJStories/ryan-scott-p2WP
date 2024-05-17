@@ -9,16 +9,24 @@ import { Link as RebassLink } from "rebass"
 const CardGameRulesPage = () => {
   const [rules, setRules] = useState("")
 
+
+
   const handleChange = event => {
     setRules(event.target.value)
   }
 
+
+
   const handleSaveToFile = () => {
     const element = document.createElement("a")
+
+    
     const file = new Blob([rules], { type: "text/plain" })
     element.href = URL.createObjectURL(file)
+
     element.download = "card_game_rules.txt"
     document.body.appendChild(element)
+
     element.click()
   }
 
@@ -28,8 +36,7 @@ const CardGameRulesPage = () => {
         <Box p={3}>
           <Heading as="h1">Card Game Rules</Heading>
 
-
-          <Box as="form" mt={3}>
+          <Box as="form" className="Form">
             <Text as="label" htmlFor="rulesInput" display="block" mb={2}>
               Input Rules:
             </Text>
@@ -38,27 +45,41 @@ const CardGameRulesPage = () => {
               id="rulesInput"
 
               value={rules}
-              
+
               onChange={handleChange}
 
               placeholder="Enter the rules of the card game..."
               required
 
               rows={6}
-              sx={{ width: '100%', mb: 3 }}
+              className="Textarea"
             />
             <Button type="button" onClick={handleSaveToFile} mr={2}>
               Save Rules to File
             </Button>
+
             <RebassLink as={Link} to="/">
               <Button>Back to Home</Button>
             </RebassLink>
           </Box>
 
         </Box>
+
       </Layout>
     </ThemeProvider>
   )
 }
+
+
+const styles = `
+  .Form {
+    margin-top: 3em;
+  }
+
+  .Textarea {
+    width: 100%;
+    margin-bottom: 3em;
+  }
+`
 
 export default CardGameRulesPage
